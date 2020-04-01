@@ -37,6 +37,17 @@ You can point to a json file in your project directory to make its content avail
 }
 ```
 
+If you place the content file within your `src` directory (which you might do to enable file watching), you should ignore the file to prevent including it in your build folder.
+
+
+```json
+{
+  "ignoreFiles": [
+    "glob/pattern/that/matches/your/file"
+  ]
+}
+```
+
 ## Usage
 
 After installation, you can use ejs syntax within any HTML file (including modules). EJS includes are not tested and might not work.
