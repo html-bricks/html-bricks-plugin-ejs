@@ -1,0 +1,33 @@
+{
+  "name": "html-bricks-plugin-ejs",
+  "version": "0.0.1",
+  "description": "ejs support for HTML-bricks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gustavgb/html-bricks-plugin-ejs.git"
+  },
+  "keywords": [
+    "ejs",
+    "plugin",
+    "html-bricks",
+    "static",
+    "compiler",
+    "cool"
+  ],
+  "author": "Gustav Burchardt <gustavburchardt@gmail.com> (https://gustavgb.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gustavgb/html-bricks-plugin-ejs/issues"
+  },
+  "homepage": "https://github.com/gustavgb/html-bricks-plugin-ejs#readme",
+  "dependencies": {
+    "ejs": "^3.0.2"
+  },
+  "peerDependencies": {
+    "html-bricks": "0.x"
+  }
+}
