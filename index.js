@@ -6,7 +6,8 @@ const htmlReg = /(\.html)$/
 const dirname = process.cwd()
 
 const defaultOptions = {
-  content: 'content.json'
+  content: 'content.json',
+  functions: 'ejs.functions.js'
 }
 
 exports.postBuild = function (files, config, options) {
@@ -18,13 +19,22 @@ exports.postBuild = function (files, config, options) {
           reject(err)
         }
 
+        let functions = require(path.resolve(dirname, finalOptions.functions))
+
+        if (!functions) {
+          functions = {}
+        }
+
         const json = JSON.parse(data) || {}
         const next = files.map(file => {
           if (file.src.match(htmlReg)) {
             return Object.assign({}, file, {
               content: ejs.render(
                 file.content.toString(),
-                json,
+                {
+                  ...json,
+                  ...functions
+                },
                 {
                   root: path.resolve(dirname, 'src'),
                   client: true

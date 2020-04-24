@@ -48,6 +48,37 @@ If you place the content file within your `src` directory (which you might do to
 }
 ```
 
+Similarly, you can implement functions that are available at compile time. Just export them from a js file that you place in your project (default path is `project/ejs.functions.js`).
+
+Example:
+
+`ejs.functions.js`
+
+```js
+module.exports = {
+  sayHi: function (name) {
+    name + ' says hi!'
+  }
+}
+```
+
+`index.html`
+
+```html
+<p><%= sayHi('Bob') %></p>
+```
+
+The path to your functions file can be set the same way as the content file, using the key `functions`. The file should be a js file!
+
+```json
+{
+  "resolve": "plugin-ejs",
+  "options": {
+    "functions": "path/to/your/functions/file.js"
+  }
+}
+```
+
 ## Usage
 
 After installation, you can use ejs syntax within any HTML file (including modules). EJS includes are not tested and might not work.
