@@ -19,33 +19,37 @@ exports.postBuild = function (files, config, options) {
           reject(err)
         }
 
-        let functions = require(path.resolve(dirname, finalOptions.functions))
+        try {
+          let functions = require(path.resolve(dirname, finalOptions.functions))
 
-        if (!functions) {
-          functions = {}
-        }
-
-        const json = JSON.parse(data) || {}
-        const next = files.map(file => {
-          if (file.src.match(htmlReg)) {
-            return Object.assign({}, file, {
-              content: ejs.render(
-                file.content.toString(),
-                {
-                  ...json,
-                  ...functions
-                },
-                {
-                  root: path.resolve(dirname, 'src'),
-                  client: true
-                }
-              )
-            })
-          } else {
-            return file
+          if (!functions) {
+            functions = {}
           }
-        })
-        resolve(next)
+
+          const json = JSON.parse(data) || {}
+          const next = files.map(file => {
+            if (file.src.match(htmlReg)) {
+              return Object.assign({}, file, {
+                content: ejs.render(
+                  file.content.toString(),
+                  {
+                    ...json,
+                    ...functions
+                  },
+                  {
+                    root: path.resolve(dirname, 'src'),
+                    client: true
+                  }
+                )
+              })
+            } else {
+              return file
+            }
+          })
+          resolve(next)
+        } catch (e) {
+          reject(e)
+        }
       })
     } catch (err) {
       reject(err)
