@@ -1,6 +1,6 @@
 {
   "name": "html-bricks-plugin-ejs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ejs support for HTML-bricks",
   "main": "index.js",
   "scripts": {
